@@ -4,6 +4,7 @@ use strictures;
 use Import::Into;
 use Moo::ClassBuilder;
 use Constructor::SugarLibrary ();
+use Module::Runtime 'module_notional_filename';
 
 # VERSION
 
@@ -16,13 +17,12 @@ sub _getglob { no strict; \*{ $_[0] } }
 sub make_named_class {
     my ( $class, @args ) = @_;
 
-    ( my $path = $class ) =~ s/::/\//g;
-    $path .= ".pm";
+    my $path = module_notional_filename $class;
     die "Won't clobber already loaded: $path => $INC{$path}" if $INC{$path};
 
     base->import::into( $class, ClassBuilder @args );
 
-    $INC{"$path\.pm"} ||= 'Set by "Throwable::SugarFactory::exception;" invocation';
+    $INC{$path} ||= sprintf 'Set by "Moo::SugarFactory"';
 
     return;
 }
