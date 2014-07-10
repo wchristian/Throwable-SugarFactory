@@ -1,9 +1,9 @@
-package Moo::RoleBuilder;
+package Moo::ClassBuilder;
 
 use strictures 1;
 use Package::Variant
-  importing => ['Moo::Role'],
-  subs      => [qw(has requires with before around after)];
+  importing => ['Moo'],
+  subs      => [qw(extends has requires with before around after)];
 
 # VERSION
 
