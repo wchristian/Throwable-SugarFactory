@@ -4,38 +4,53 @@ use strictures;
 use Import::Into;
 use Moo::ClassBuilder;
 use Constructor::SugarLibrary ();
-use Module::Runtime 'module_notional_filename';
 
 # VERSION
 
-# ABSTRACT: build a library of syntax-sugared classes
+# ABSTRACT: build a library of syntax-sugared Moo classes
 
 # COPYRIGHT
 
+=head1 SYNOPSIS
+
+    package My::SugarLib;
+    use Moo::SugarFactory;
+    
+    class "My::Moo::Object" => (
+        has => [ plus => ( is => 'ro' ) ],
+        has => [ more => ( is => 'ro' ) ],
+    );
+    class "My::Moose::Thing" => (
+        has     => [ contains => ( is => 'ro' ) ],
+        has     => [ meta     => ( is => 'ro' ) ],
+        extends => Object_c(),
+    );
+
+    package My::Code;
+    use My::SugarLib;
+    
+    my $obj = Object plus => "some", more => "data";
+    die if !$obj->isa( Object_c );
+    die if !$obj->plus eq "some";
+    
+    my $obj2 = Thing contains => "other", meta => "data", plus => "some", more => "data";
+    die if !$obj2->isa( Thing_c );
+    die if !$obj2->isa( Object_c );
+    die if !$obj2->meta eq "data";
+
+=cut
+
 sub _getglob { no strict; \*{ $_[0] } }
-
-sub make_named_class {
-    my ( $class, @args ) = @_;
-
-    my $path = module_notional_filename $class;
-    die "Won't clobber already loaded: $path => $INC{$path}" if $INC{$path};
-
-    base->import::into( $class, ClassBuilder @args );
-
-    $INC{$path} ||= sprintf 'Set by "Moo::SugarFactory"';
-
-    return;
-}
 
 sub import {
     Constructor::SugarLibrary->import::into( 1 );
     my $factory = caller;
     *{ _getglob "$factory\::class" } = sub {
-        my ( $id, @args ) = @_;
-        my $class = "$factory\::$id";
+        my ( $call, @args ) = @_;
+        my ( $class ) = split /->/, $call;
         my $build = $factory->can( "BUILDARGS" ) || sub { shift; @_ };
-        make_named_class $class, $build->( $id, @args );
-        $factory->sweeten_meth( $class );
+        ClassBuilder $class, $build->( $class, @args );
+        $factory->sweeten_meth( $call );
         return;
     };
 }

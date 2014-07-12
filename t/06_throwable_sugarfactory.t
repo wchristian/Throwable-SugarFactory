@@ -5,6 +5,7 @@ package basic_test;
 use Test::InDistDir;
 use Test::More;
 use Test::Fatal;
+use Try::Tiny;
 
 BEGIN {
 
@@ -25,8 +26,8 @@ done_testing;
 exit;
 
 sub run {
-    my $p = PLAIN_ERROR;
-    my $d = DATA_ERROR flub => 'blarb';
+    my $p = try { eval { die "wagh" } or die PLAIN_ERROR } catch { $_ };
+    my $d = try { die DATA_ERROR flub => 'blarb' } catch { $_ };
     ok $p->isa( "TestExLib::PLAIN_ERROR" );
     ok $d->isa( "TestExLib::DATA_ERROR" );
     ok $p->does( "Throwable" );
@@ -38,5 +39,6 @@ sub run {
     is $p->description, "plain description";
     is $d->description, "data description";
     is $d->flub,        'blarb';
+    like $p->previous_exception, qr/wagh/;
     return;
 }

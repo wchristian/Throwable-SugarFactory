@@ -37,15 +37,6 @@ sub _export {
     return $func;
 }
 
-sub _arg_loop (&@) {
-    my ( $code, @args ) = @_;
-
-    for my $class ( @args ) {
-        my ( $id ) = ( reverse split /::/, $class )[0];
-        $code->( $class, $id );
-    }
-}
-
 sub import {
     shift;
     my %flags = map { $_ => 1 } grep /^-/, @_;
@@ -53,15 +44,16 @@ sub import {
     my $target = caller;
     my ( @constructors, @iders );
 
-    _arg_loop {
-        my ( $class, $id ) = @_;
+    for my $call ( @args ) {
+        my ( $class, $method ) = split /->/, $call;
+        $method ||= "new";
+        my ( $id ) = ( reverse split /::/, $class )[0];
 
-        push @constructors, _export $target, $id, sub { $class->new( @_ ) };
+        push @constructors, _export $target, $id, sub { $class->$method( @_ ) };
 
         push @iders, _export $target, "$id\_c", sub { $class }
           unless $flags{-noids};
     }
-    @args;
 
     return ( \@constructors, \@iders );
 }

@@ -6,9 +6,40 @@ use Moo::SugarFactory ();
 
 # VERSION
 
-# ABSTRACT: build a library of syntax-sugared exceptions
+# ABSTRACT: build a library of syntax-sugared Throwable-based exceptions
 
 # COPYRIGHT
+
+=head1 SYNOPSIS
+
+    package My::SugarLib;
+    use Throwable::SugarFactory;
+    
+    exception PLAIN_ERROR => "a generic error without metadata";
+    exception DATA_ERROR => "data description" => (
+        has => [ flub => ( is => 'ro' ) ]
+    );
+
+    package My::Code;
+    use My::SugarLib;
+    use Try::Tiny;
+    
+    try {
+        die PLAIN_ERROR
+    }
+    catch {
+        die if !$_->isa( PLAIN_ERROR_c );
+    };
+    
+    try {
+        die DATA_ERROR flub => 'blarb'
+    }
+    catch {
+        die if !$_->isa(DATA_ERROR_c );
+        die if $_->flub ne 'blarb';
+    };
+
+=cut
 
 sub _getglob { no strict; \*{ $_[0] } }
 
@@ -25,7 +56,8 @@ sub import {
     my $factory = caller;
     *{ _getglob "$factory\::exception" } = sub {
         my ( $id, $description, @args ) = @_;
-        $factory->can( "class" )->( $id, _base_args( $description ), @args );
+        my $class = "$factory\::$id";
+        $factory->can( "class" )->( "$class->throw", _base_args( $description ), @args );
     };
 }
 
