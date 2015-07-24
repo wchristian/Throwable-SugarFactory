@@ -1,6 +1,6 @@
 package Throwable::SugarFactory;
 
-use strictures;
+use strictures 2;
 use Import::Into;
 use Moo::SugarFactory ();
 

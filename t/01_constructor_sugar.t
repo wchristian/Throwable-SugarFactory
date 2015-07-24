@@ -1,5 +1,4 @@
-use strictures 1;
-
+use strictures 2;
 use Test::More;
 
 {

@@ -1,6 +1,6 @@
 package Moo::ClassBuilder;
 
-use strictures 1;
+use strictures 2;
 use Package::NamedVariant
   importing => ['Moo'],
   subs      => [qw(extends has with before around after)];

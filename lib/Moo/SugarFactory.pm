@@ -1,6 +1,6 @@
 package Moo::SugarFactory;
 
-use strictures;
+use strictures 2;
 use Import::Into;
 use Moo::ClassBuilder;
 use Constructor::SugarLibrary ();

@@ -1,6 +1,6 @@
 package Constructor::Sugar;
 
-use strictures 1;
+use strictures 2;
 
 # VERSION
 

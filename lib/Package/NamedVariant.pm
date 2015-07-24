@@ -1,6 +1,6 @@
 package Package::NamedVariant;
 
-use strictures;
+use strictures 2;
 use Import::Into;
 use Package::Variant ();
 use Module::Runtime 'module_notional_filename';

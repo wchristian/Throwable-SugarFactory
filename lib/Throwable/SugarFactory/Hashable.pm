@@ -1,5 +1,6 @@
 package Throwable::SugarFactory::Hashable;
-use strictures;
+
+use strictures 2;
 use Class::Inspector;
 use Moo::Role;
 

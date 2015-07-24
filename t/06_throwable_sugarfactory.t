@@ -1,4 +1,4 @@
-use strictures;
+use strictures 2;
 
 package basic_test;
 

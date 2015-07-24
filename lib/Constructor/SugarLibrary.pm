@@ -1,6 +1,6 @@
 package Constructor::SugarLibrary;
 
-use strictures 1;
+use strictures 2;
 use Import::Into;
 use Constructor::Sugar ();
 
