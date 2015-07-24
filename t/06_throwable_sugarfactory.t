@@ -26,7 +26,7 @@ done_testing;
 exit;
 
 sub run {
-    my $p = try { eval { die "wagh" } or die PLAIN_ERROR } catch { $_ };
+    my $p = try { eval { die "wagh\n" } or die PLAIN_ERROR } catch { $_ };
     my $d = try { die DATA_ERROR flub => 'blarb' } catch { $_ };
     ok $p->isa( "TestExLib::PLAIN_ERROR" );
     ok $d->isa( "TestExLib::DATA_ERROR" );
@@ -44,5 +44,21 @@ sub run {
     is $d->error, "DATA_ERROR";
     is $d->flub,        'blarb';
     like $p->previous_exception, qr/wagh/;
+    is_deeply $d->to_hash,
+      {
+        data               => { flub => 'blarb' },
+        description        => 'data description',
+        error              => 'DATA_ERROR',
+        namespace          => 'TestExLib',
+        previous_exception => '',
+      };
+    is_deeply $p->to_hash,
+      {
+        data               => {},
+        description        => 'plain description',
+        error              => 'PLAIN_ERROR',
+        namespace          => 'TestExLib',
+        previous_exception => "wagh\n",
+      };
     return;
 }
