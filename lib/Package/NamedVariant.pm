@@ -43,7 +43,8 @@ sub build_variant_of {
     my $path = module_notional_filename $class;
     die "Won't clobber already loaded: $path => $INC{$path}" if $INC{$path};
 
-    base->import::into( $class, Package::Variant->build_variant_of( $variable, @args ) );
+    base->import::into( $class,
+        Package::Variant->build_variant_of( $variable, @args ) );
 
     $INC{$path} ||= sprintf 'Set by "Package::NamedVariant"';
 

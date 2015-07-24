@@ -51,7 +51,8 @@ sub import {
         for my $call ( @_ ) {
             my ( $class ) = split /->/, $call;
             my ( $id ) = ( reverse split /::/, $class )[0];
-            my ( $ctors, $ids ) = Constructor::Sugar->import::into( $library, $call );
+            my ( $ctors, $ids ) =
+              Constructor::Sugar->import::into( $library, $call );
             push @{ _getexport $library}, @{$ctors}, @{$ids};
             my $tags = _getexport_tags $library;
             push @{ $tags->{$id} }, @{$ctors}, @{$ids};

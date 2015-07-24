@@ -47,9 +47,9 @@ sub _base_args {
     my ( $namespace, $error, $description ) = @_;
     return (
         with => [ "Throwable", __PACKAGE__ . "::Hashable" ],
-        has  => [ namespace => ( is => 'ro', default => $namespace ) ],
-        has  => [ error => ( is => 'ro', default => $error ) ],
-        has  => [ description => ( is => 'ro', default => $description ) ],
+        has => [ namespace   => ( is => 'ro', default => $namespace ) ],
+        has => [ error       => ( is => 'ro', default => $error ) ],
+        has => [ description => ( is => 'ro', default => $description ) ],
     );
 }
 
