@@ -38,6 +38,10 @@ sub run {
     is ref $d, "TestExLib::DATA_ERROR";
     is $p->description, "plain description";
     is $d->description, "data description";
+    is $p->namespace, "TestExLib";
+    is $d->namespace, "TestExLib";
+    is $p->error, "PLAIN_ERROR";
+    is $d->error, "DATA_ERROR";
     is $d->flub,        'blarb';
     like $p->previous_exception, qr/wagh/;
     return;

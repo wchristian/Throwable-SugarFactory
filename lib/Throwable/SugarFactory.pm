@@ -44,10 +44,12 @@ use Moo::SugarFactory ();
 sub _getglob { no strict; \*{ $_[0] } }
 
 sub _base_args {
-    my ( $description ) = @_;
+    my ( $namespace, $error, $description ) = @_;
     return (
         with => "Throwable",
-        has  => [ description => ( is => 'ro', default => $description ) ]
+        has  => [ namespace => ( is => 'ro', default => $namespace ) ],
+        has  => [ error => ( is => 'ro', default => $error ) ],
+        has  => [ description => ( is => 'ro', default => $description ) ],
     );
 }
 
@@ -57,7 +59,9 @@ sub import {
     *{ _getglob "$factory\::exception" } = sub {
         my ( $id, $description, @args ) = @_;
         my $class = "$factory\::$id";
-        $factory->can( "class" )->( "$class->throw", _base_args( $description ), @args );
+        $factory->can( "class" )->(
+            "$class->throw", _base_args( $factory, $id, $description ), @args
+        );
     };
 }
 
