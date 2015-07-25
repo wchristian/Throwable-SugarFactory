@@ -1,6 +1,7 @@
 use strictures 2;
 
 use Test::More;
+use Test::Fatal;
 
 use Moo::ClassBuilder;
 
@@ -9,6 +10,9 @@ use Moo::ClassBuilder;
 
 ClassBuilder Thing => install => [ foo => sub { "foo" } ];
 is Thing->new->foo, "foo";
+ok $INC{"Thing.pm"};
+
+ok exception { ClassBuilder "Thing" };
 
 ClassBuilder Thing2 => install => [ foo => sub { "foo" } ],
   around            => [ foo   => sub   { "foo2" } ];

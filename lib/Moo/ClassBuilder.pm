@@ -1,9 +1,10 @@
 package Moo::ClassBuilder;
 
 use strictures 2;
-use Package::NamedVariant
+use Package::Variant 1.003002    #
   importing => ['Moo'],
   subs      => [qw(extends has with before around after)];
+use Module::Runtime 'module_notional_filename';
 
 # VERSION
 
@@ -65,8 +66,17 @@ and install is used to set up methods.
 
 =cut
 
+sub make_variant_package_name {
+    my ( undef, $name ) = @_;
+
+    my $path = module_notional_filename $name;
+    die "Won't clobber already loaded: $path => $INC{$path}" if $INC{$path};
+
+    return $name;
+}
+
 sub make_variant {
-    my ( $class, $target_package, @args ) = @_;
+    my ( $class, undef, undef, @args ) = @_;
     while ( @args ) {
         my ( $func, $args ) = ( shift @args, shift @args );
         $args = [$args] if ref $args ne "ARRAY";
