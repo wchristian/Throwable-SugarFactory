@@ -35,14 +35,4 @@ use Test::More;
     is $obj->more, undef;
 }
 
-{
-
-    package Test3;
-    use Test::More;
-    use Constructor::Sugar qw( -noids OtherObject );
-
-    ok __PACKAGE__->can( "OtherObject" );
-    ok !__PACKAGE__->can( "OtherObject_c" );
-}
-
 done_testing;

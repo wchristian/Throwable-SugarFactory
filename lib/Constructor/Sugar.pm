@@ -38,9 +38,7 @@ sub _export {
 }
 
 sub import {
-    shift;
-    my %flags = map { $_ => 1 } grep /^-/, @_;
-    my @args = grep !/^-/, @_;
+    my ( undef, @args ) = @_;
     my $target = caller;
     my ( @constructors, @iders );
 
@@ -50,9 +48,7 @@ sub import {
         my ( $id ) = ( reverse split /::/, $class )[0];
 
         push @constructors, _export $target, $id, sub { $class->$method( @_ ) };
-
-        push @iders, _export $target, "$id\_c", sub { $class }
-          unless $flags{-noids};
+        push @iders, _export $target, "$id\_c", sub { $class };
     }
 
     return ( \@constructors, \@iders );
