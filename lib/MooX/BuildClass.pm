@@ -1,4 +1,4 @@
-package MooX::ClassBuilder;
+package MooX::BuildClass;
 
 use strictures 2;
 use Package::Variant 1.003002    #
@@ -14,9 +14,9 @@ use Module::Runtime 'module_notional_filename';
 
 =head1 SYNOPSIS
 
-    use MooX::ClassBuilder;
+    use MooX::BuildClass;
         
-    ClassBuilder "Cat::Food" => (
+    BuildClass "Cat::Food" => (
         
         install => [
             feed_lion => sub {

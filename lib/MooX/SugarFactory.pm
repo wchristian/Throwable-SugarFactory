@@ -2,7 +2,7 @@ package MooX::SugarFactory;
 
 use strictures 2;
 use Import::Into;
-use MooX::ClassBuilder;
+use MooX::BuildClass;
 use Constructor::SugarLibrary ();
 
 # VERSION
@@ -49,7 +49,7 @@ sub import {
         my ( $call, @args ) = @_;
         my ( $class ) = split /->/, $call;
         my $build = $factory->can( "BUILDARGS" ) || sub { shift; @_ };
-        ClassBuilder $class, $build->( $class, @args );
+        BuildClass $class, $build->( $class, @args );
         $factory->sweeten_meth( $call );
         return;
     };
