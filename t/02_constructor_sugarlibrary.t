@@ -31,15 +31,15 @@ BEGIN {
 {
     use Sugar::Library;
 
-    ok my $obj = Object plus => "some", more => "data";
-    ok $obj->isa( Object_c );
-    is Object_c, "My::Moo::Object";
+    ok my $obj = object plus => "some", more => "data";
+    ok $obj->isa( Object );
+    is Object, "My::Moo::Object";
     is $obj->plus, "some";
     is $obj->more, "data";
 
-    ok my $obj2 = Object2 plus => "some", more => "data";
-    ok $obj2->isa( Object2_c );
-    is Object2_c, "My::Moo::Object2";
+    ok my $obj2 = object2 plus => "some", more => "data";
+    ok $obj2->isa( Object2 );
+    is Object2, "My::Moo::Object2";
     is $obj2->plus, undef;
     is $obj2->more, undef;
 }
@@ -50,8 +50,8 @@ BEGIN {
     use Test::More;
     use Sugar::Library ':ctors';
 
-    ok __PACKAGE__->can( "Object" );
-    ok !__PACKAGE__->can( "Object_c" );
+    ok __PACKAGE__->can( "object" );
+    ok !__PACKAGE__->can( "Object" );
 }
 
 {
@@ -60,8 +60,8 @@ BEGIN {
     use Test::More;
     use Sugar::Library ':ids';
 
-    ok !__PACKAGE__->can( "Object" );
-    ok __PACKAGE__->can( "Object_c" );
+    ok !__PACKAGE__->can( "object" );
+    ok __PACKAGE__->can( "Object" );
 }
 
 {
@@ -70,8 +70,8 @@ BEGIN {
     use Test::More;
     use Sugar::Library ':Object';
 
+    ok __PACKAGE__->can( "object" );
     ok __PACKAGE__->can( "Object" );
-    ok __PACKAGE__->can( "Object_c" );
 }
 
 done_testing;

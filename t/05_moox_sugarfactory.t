@@ -12,7 +12,7 @@ BEGIN {
     class "My::Moo::Thing" => (
         has     => [ contains => ( is => 'ro' ) ],
         has     => [ meta     => ( is => 'ro' ) ],
-        extends => Object_c(),
+        extends => Object(),
     );
     class "My::Moo::CustomCons->cons" => (
         has     => [ contains => ( is => 'ro' ) ],
@@ -23,22 +23,22 @@ BEGIN {
 }
 
 use My::SugarFactory;
-ok my $obj = Object plus => "some", more => "data";
-ok $obj->isa( Object_c );
+ok my $obj = object plus => "some", more => "data";
+ok $obj->isa( Object );
 is $obj->plus, "some";
-is Object_c, "My::Moo::Object";
+is Object, "My::Moo::Object";
 
 ok my $obj2 =    #
-  Thing contains => "other", meta => "data", plus => "some", more => "data";
-ok $obj2->isa( Thing_c );
-ok $obj2->isa( Object_c );
+  thing contains => "other", meta => "data", plus => "some", more => "data";
+ok $obj2->isa( Thing );
+ok $obj2->isa( Object );
 is $obj2->contains, "other";
 is $obj2->plus,     "some";
-is Thing_c, "My::Moo::Thing";
+is Thing, "My::Moo::Thing";
 
-ok my $obj3 = CustomCons contains => "other", meta => "data";
-ok $obj3->isa( CustomCons_c );
+ok my $obj3 = custom_cons contains => "other", meta => "data";
+ok $obj3->isa( CustomCons );
 is $obj3->contains, undef;
-is CustomCons_c, "My::Moo::CustomCons";
+is CustomCons, "My::Moo::CustomCons";
 
 done_testing;

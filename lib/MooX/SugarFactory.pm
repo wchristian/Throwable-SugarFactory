@@ -20,22 +20,25 @@ use Constructor::SugarLibrary ();
         has => [ plus => ( is => 'ro' ) ],
         has => [ more => ( is => 'ro' ) ],
     );
+    
     class "My::Moose::Thing" => (
         has     => [ contains => ( is => 'ro' ) ],
         has     => [ meta     => ( is => 'ro' ) ],
-        extends => Object_c(),
+        extends => Object(),
     );
 
     package My::Code;
     use My::SugarLib;
     
-    my $obj = Object plus => "some", more => "data";
-    die if !$obj->isa( Object_c );
+    my $obj = object plus => "some", more => "data";
+    die if !$obj->isa( Object );
     die if !$obj->plus eq "some";
     
-    my $obj2 = Thing contains => "other", meta => "data", plus => "some", more => "data";
-    die if !$obj2->isa( Thing_c );
-    die if !$obj2->isa( Object_c );
+    my $obj2 = thing contains => "other", meta => "data",    #
+      plus => "some", more => "data";
+    
+    die if !$obj2->isa( Thing );
+    die if !$obj2->isa( Object );
     die if !$obj2->meta eq "data";
 
 =cut

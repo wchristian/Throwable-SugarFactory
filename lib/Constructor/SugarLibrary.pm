@@ -33,10 +33,10 @@ And now these do the same:
     package My::SugaredCode;
     use My::SugarLib;
     
-    my $obj = Object plus => "some", more => "data";
-    die if $obj->isa( Object_c );
-    my $obj2 = Thing with => "other", meta => "data";
-    die if $obj->isa( Thing_c );
+    my $obj = object plus => "some", more => "data";
+    die if $obj->isa( Object );
+    my $obj2 = thing with => "other", meta => "data";
+    die if $obj->isa( Thing );
 
 =cut
 

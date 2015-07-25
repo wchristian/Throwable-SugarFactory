@@ -15,9 +15,9 @@ use Test::More;
     use Test::More;
     use Constructor::Sugar "My::Moo::Object";
 
-    ok my $obj = Object plus => "some", more => "data";
-    ok $obj->isa( Object_c );
-    is Object_c, "My::Moo::Object";
+    ok my $obj = object plus => "some", more => "data";
+    ok $obj->isa( Object );
+    is Object, "My::Moo::Object";
     is $obj->plus, "some";
     is $obj->more, "data";
 }
@@ -28,9 +28,9 @@ use Test::More;
     use Test::More;
     use Constructor::Sugar "My::Moo::Object->cons";
 
-    ok my $obj = Object plus => "some", more => "data";
-    ok $obj->isa( Object_c );
-    is Object_c, "My::Moo::Object";
+    ok my $obj = object plus => "some", more => "data";
+    ok $obj->isa( Object );
+    is Object, "My::Moo::Object";
     is $obj->plus, undef;
     is $obj->more, undef;
 }

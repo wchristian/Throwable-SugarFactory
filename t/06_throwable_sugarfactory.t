@@ -21,8 +21,7 @@ BEGIN {
 }
 
 BEGIN {
-    TestExLib->import(
-        qw( PLAIN_ERROR DATA_ERROR PLAIN_ERROR_c DATA_ERROR_c ) );
+    TestExLib->import( qw( plain_error data_error PLAIN_ERROR DATA_ERROR ) );
 }
 
 run();
@@ -31,16 +30,16 @@ exit;
 
 sub run {
     my $p = try {
-        eval { die "wagh\n" } or die PLAIN_ERROR
+        eval { die "wagh\n" } or die plain_error
     }
     catch { $_ };
-    my $d = try { die DATA_ERROR flub => 'blarb' } catch { $_ };
+    my $d = try { die data_error flub => 'blarb' } catch { $_ };
     ok $p->isa( "TestExLib::PLAIN_ERROR" );
     ok $d->isa( "TestExLib::DATA_ERROR" );
     ok $p->does( "Throwable" );
     ok $d->does( "Throwable" );
-    is PLAIN_ERROR_c, "TestExLib::PLAIN_ERROR";
-    is DATA_ERROR_c,  "TestExLib::DATA_ERROR";
+    is PLAIN_ERROR, "TestExLib::PLAIN_ERROR";
+    is DATA_ERROR,  "TestExLib::DATA_ERROR";
     is ref $p, "TestExLib::PLAIN_ERROR";
     is ref $d, "TestExLib::DATA_ERROR";
     is $p->description,          "plain description";

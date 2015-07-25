@@ -15,27 +15,26 @@ use MooX::SugarFactory ();
     package My::SugarLib;
     use Throwable::SugarFactory;
     
-    exception PLAIN_ERROR => "a generic error without metadata";
-    exception DATA_ERROR => "data description" => (
-        has => [ flub => ( is => 'ro' ) ]
-    );
+    exception PlainError => "a generic error without metadata";
+    exception DataError  => "data description" =>
+      has => [ flub => ( is => 'ro' ) ];
 
     package My::Code;
     use My::SugarLib;
     use Try::Tiny;
     
     try {
-        die PLAIN_ERROR
+        die plain_error;
     }
     catch {
-        die if !$_->isa( PLAIN_ERROR_c );
+        die if !$_->isa( PlainError );
     };
     
     try {
-        die DATA_ERROR flub => 'blarb'
+        die data_error flub => 'blarb';
     }
     catch {
-        die if !$_->isa(DATA_ERROR_c );
+        die if !$_->isa( DataError );
         die if $_->flub ne 'blarb';
     };
 
