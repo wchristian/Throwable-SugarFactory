@@ -2,7 +2,7 @@ package Throwable::SugarFactory;
 
 use strictures 2;
 use Import::Into;
-use Moo::SugarFactory ();
+use MooX::SugarFactory ();
 
 # VERSION
 
@@ -54,7 +54,7 @@ sub _base_args {
 }
 
 sub import {
-    Moo::SugarFactory->import::into( 1 );
+    MooX::SugarFactory->import::into( 1 );
     my $factory = caller;
     *{ _getglob "$factory\::exception" } = sub {
         my ( $id, $description, @args ) = @_;

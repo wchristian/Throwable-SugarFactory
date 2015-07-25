@@ -1,4 +1,4 @@
-package Moo::ClassBuilder;
+package MooX::ClassBuilder;
 
 use strictures 2;
 use Package::Variant 1.003002    #
@@ -14,7 +14,7 @@ use Module::Runtime 'module_notional_filename';
 
 =head1 SYNOPSIS
 
-    use Moo::ClassBuilder;
+    use MooX::ClassBuilder;
         
     ClassBuilder "Cat::Food" => (
         

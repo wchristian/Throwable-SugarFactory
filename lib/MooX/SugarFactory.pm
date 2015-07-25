@@ -1,8 +1,8 @@
-package Moo::SugarFactory;
+package MooX::SugarFactory;
 
 use strictures 2;
 use Import::Into;
-use Moo::ClassBuilder;
+use MooX::ClassBuilder;
 use Constructor::SugarLibrary ();
 
 # VERSION
@@ -14,7 +14,7 @@ use Constructor::SugarLibrary ();
 =head1 SYNOPSIS
 
     package My::SugarLib;
-    use Moo::SugarFactory;
+    use MooX::SugarFactory;
     
     class "My::Moo::Object" => (
         has => [ plus => ( is => 'ro' ) ],

@@ -4,7 +4,7 @@ use Test::More;
 BEGIN {
 
     package My::SugarFactory;
-    use Moo::SugarFactory;
+    use MooX::SugarFactory;
     class "My::Moo::Object" => (
         has => [ plus => ( is => 'ro' ) ],
         has => [ more => ( is => 'ro' ) ],

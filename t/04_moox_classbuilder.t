@@ -3,7 +3,7 @@ use strictures 2;
 use Test::More;
 use Test::Fatal;
 
-use Moo::ClassBuilder;
+use MooX::ClassBuilder;
 
 { package TestRole; use Moo::Role }
 { package TestClass; use Moo; $INC{"TestClass.pm"}++ }
