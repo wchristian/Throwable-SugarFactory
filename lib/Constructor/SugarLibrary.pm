@@ -13,14 +13,15 @@ use Throwable::SugarFactory::_Utils '_getglob';
 
 =head1 SYNOPSIS
 
-    # set up the library package
+Declare syntax sugar in a library that will export it.
+
     package My::SugarLib;
     use Constructor::SugarLibrary;
     
     sweeten "My::Moo::Object";
     sweeten "My::Moose::Thing";
 
-And now these do the same:
+This is how you'd normally construct and check objects:
 
     package My::NormalCode;
     use My::Moo::Object;
@@ -30,6 +31,8 @@ And now these do the same:
     die if !$obj->isa( "My::Moo::Object" );
     my $obj2 = My::Moose::Thing->new( with => "other", meta => "data" );
     die if !$obj->isa( "My::Moose::Thing" );
+
+Using the sugar library the same can be done much more concisely:
 
     package My::SugaredCode;
     use My::SugarLib;

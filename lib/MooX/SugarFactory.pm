@@ -14,6 +14,8 @@ use Throwable::SugarFactory::_Utils '_getglob';
 
 =head1 SYNOPSIS
 
+Declare classes in a library that will export sugar.
+
     package My::SugarLib;
     use MooX::SugarFactory;
     
@@ -27,6 +29,8 @@ use Throwable::SugarFactory::_Utils '_getglob';
         has     => [ meta     => ( is => 'ro' ) ],
         extends => Object(),
     );
+
+Use class library to export sugar for object construction and class checking.
 
     package My::Code;
     use My::SugarLib;
