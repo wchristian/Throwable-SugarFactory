@@ -1,3 +1,6 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.152070  2015-07-27 00:11:52+02:00 Europe/Berlin
+    - first release
