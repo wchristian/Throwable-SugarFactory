@@ -19,6 +19,7 @@ BEGIN {
         has     => [ meta     => ( is => 'ro' ) ],
         install => [ cons     => sub  { My::Moo::CustomCons->new } ],
     );
+    class "My::Custom make";
     $INC{"My/SugarFactory.pm"}++;
 }
 

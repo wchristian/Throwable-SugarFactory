@@ -27,6 +27,8 @@ use Throwable::SugarFactory::_Utils '_getglob';
         has     => [ meta     => ( is => 'ro' ) ],
         extends => Object(),
     );
+    
+    class "My::Custom make";
 
     package My::Code;
     use My::SugarLib;
@@ -53,7 +55,7 @@ sub import {
     my $factory = caller;
     *{ _getglob $factory, "class" } = sub {
         my ( $spec, @args ) = @_;
-        my ( $class ) = split /->/, $spec;
+        my ( $class ) = split /->| /, $spec;
         my $build = $factory->can( "BUILDARGS" ) || sub { shift; @_ };
         BuildClass $class, $build->( $class, @args );
         $factory->sweeten_meth( $spec );

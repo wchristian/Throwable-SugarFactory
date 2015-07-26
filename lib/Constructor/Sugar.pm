@@ -26,6 +26,7 @@ use Throwable::SugarFactory::_Utils '_getglob';
     {
         package ConstructorWrapper;
         use Constructor::Sugar 'My::Moo::Object';
+        use Constructor::Sugar 'My::Custom make';
         
         my $o = object plus => "some", more => "data";
         die if !$o->isa( Object );
@@ -50,12 +51,13 @@ sub import {
     my ( @constructors, @iders );
 
     for my $spec ( @specs ) {
-        my ( $class, $method ) = split /->/, $spec;
-        $method ||= "new";
+        my ( $call,  $ct )     = split / /,  $spec;
+        my ( $class, $ctmeth ) = split /->/, $call;
+        $ctmeth ||= "new";
         my $id = ( reverse split /::/, $class )[0];
-        my $ct = decamelize $id;
+        $ct ||= decamelize $id;
 
-        push @constructors, _export $target, $ct, sub { $class->$method( @_ ) };
+        push @constructors, _export $target, $ct, sub { $class->$ctmeth( @_ ) };
         push @iders,        _export $target, $id, sub { $class };
     }
 

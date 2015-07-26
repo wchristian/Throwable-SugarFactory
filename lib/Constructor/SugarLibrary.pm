@@ -19,6 +19,7 @@ use Throwable::SugarFactory::_Utils '_getglob';
     
     sweeten "My::Moo::Object";
     sweeten "My::Moose::Thing";
+    sweeten "My::Custom make";
 
 And now these do the same:
 
@@ -54,7 +55,7 @@ sub import {
     my $library      = caller;
     my $sweeten_func = sub {
         for my $spec ( @_ ) {
-            my ( $class ) = split /->/, $spec;
+            my ( $class ) = split /->| /, $spec;
             my ( $id ) = ( reverse split /::/, $class )[0];
             my ( $ctors, $ids ) =
               Constructor::Sugar->import::into( $library, $spec );
