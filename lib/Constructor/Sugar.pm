@@ -49,6 +49,9 @@ sub import {
         $method ||= "new";
         my $id = ( reverse split /::/, $class )[0];
         my $ct = decamelize $id;
+        die "Converting '$id' into a snake_case constructor did not result in"
+          . " a different string."
+          if $ct eq $id;
 
         push @constructors, _export $target, $ct, sub { $class->$method( @_ ) };
         push @iders,        _export $target, $id, sub { $class };

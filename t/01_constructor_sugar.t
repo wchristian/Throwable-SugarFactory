@@ -1,5 +1,9 @@
 use strictures 2;
 use Test::More;
+use Test::Fatal;
+
+require Constructor::Sugar;
+ok exception { Constructor::Sugar->import( "object" ) };
 
 {
 
