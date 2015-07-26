@@ -16,6 +16,8 @@ BEGIN {
     sub cons { __PACKAGE__->new }
 }
 
+BEGIN { package My::Custom; use Moo; }
+
 BEGIN {
 
     package Sugar::Library;
@@ -42,6 +44,10 @@ BEGIN {
     is Object2, "My::Moo::Object2";
     is $obj2->plus, undef;
     is $obj2->more, undef;
+
+    ok my $obj3 = make;
+    ok $obj3->isa( Custom );
+    is Custom, "My::Custom";
 }
 
 {
@@ -72,6 +78,16 @@ BEGIN {
 
     ok __PACKAGE__->can( "object" );
     ok __PACKAGE__->can( "Object" );
+}
+
+{
+
+    package D;
+    use Test::More;
+    use Sugar::Library ':Custom';
+
+    ok __PACKAGE__->can( "make" );
+    ok __PACKAGE__->can( "Custom" );
 }
 
 done_testing;

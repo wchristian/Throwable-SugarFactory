@@ -41,6 +41,10 @@ use Throwable::SugarFactory::_Utils '_getglob';
     die if !$obj2->isa( Thing );
     die if !$obj2->isa( Object );
     die if !$obj2->meta eq "data";
+    
+    my $obj3 = make;
+    
+    die if !$obj3->isa( Custom );
 
 =cut
 

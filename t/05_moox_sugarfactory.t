@@ -41,4 +41,8 @@ ok $obj3->isa( CustomCons );
 is $obj3->contains, undef;
 is CustomCons, "My::Moo::CustomCons";
 
+ok my $obj4 = make;
+ok $obj4->isa( Custom );
+is Custom, "My::Custom";
+
 done_testing;

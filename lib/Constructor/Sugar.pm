@@ -14,6 +14,7 @@ use Throwable::SugarFactory::_Utils '_getglob';
 =head1 SYNOPSIS
 
     { package My::Moo::Object; use Moo; has $_, is => 'ro' for qw( plus more ) }
+    { package My::Custom; use Moo; }
     
     {
         package BasicSyntax;
@@ -29,6 +30,10 @@ use Throwable::SugarFactory::_Utils '_getglob';
         my $o = object plus => "some", more => "data";
         die if !$o->isa( Object );
         die if Object ne "My::Moo::Object";
+        
+        my $o2 = make;
+        die if !$o2->isa( Custom );
+        die if Custom ne "My::Custom";
     }
 
 =cut

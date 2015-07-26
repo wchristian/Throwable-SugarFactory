@@ -25,11 +25,14 @@ And now these do the same:
     package My::NormalCode;
     use My::Moo::Object;
     use My::Moose::Thing;
+    use My::Custom;
     
     my $obj = My::Moo::Object->new( plus => "some", more => "data" );
     die if !$obj->isa( "My::Moo::Object" );
     my $obj2 = My::Moose::Thing->new( with => "other", meta => "data" );
-    die if !$obj->isa( "My::Moose::Thing" );
+    die if !$obj2->isa( "My::Moose::Thing" );
+    my $obj3 = My::Custom->new;
+    die if !$obj3->isa( "My::Custom" );
 
     package My::SugaredCode;
     use My::SugarLib;
@@ -37,7 +40,9 @@ And now these do the same:
     my $obj = object plus => "some", more => "data";
     die if $obj->isa( Object );
     my $obj2 = thing with => "other", meta => "data";
-    die if $obj->isa( Thing );
+    die if $obj2->isa( Thing );
+    my $obj3 = make;
+    die if $obj3->isa( Custom );
 
 =cut
 

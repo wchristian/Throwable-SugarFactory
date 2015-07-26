@@ -38,6 +38,13 @@ use Throwable::SugarFactory::_Utils '_getglob';
         die if !$_->isa( DataError );
         die if $_->flub ne 'blarb';
     };
+    
+    try {
+        die make;
+    }
+    catch {
+        die if !$_->isa( Custom );
+    };
 
 =cut
 

@@ -21,7 +21,8 @@ BEGIN {
 }
 
 BEGIN {
-    TestExLib->import( qw( plain_error data_error PLAIN_ERROR DATA_ERROR ) );
+    my @e = qw( plain_error data_error make PLAIN_ERROR DATA_ERROR Custom );
+    TestExLib->import( @e );
 }
 
 run();
@@ -34,20 +35,28 @@ sub run {
     }
     catch { $_ };
     my $d = try { die data_error flub => 'blarb' } catch { $_ };
+    my $c = try { die make } catch { $_ };
     ok $p->isa( "TestExLib::PLAIN_ERROR" );
     ok $d->isa( "TestExLib::DATA_ERROR" );
+    ok $c->isa( "TestExLib::Custom" );
     ok $p->does( "Throwable" );
     ok $d->does( "Throwable" );
+    ok $c->does( "Throwable" );
     is PLAIN_ERROR, "TestExLib::PLAIN_ERROR";
     is DATA_ERROR,  "TestExLib::DATA_ERROR";
+    is Custom,      "TestExLib::Custom";
     is ref $p, "TestExLib::PLAIN_ERROR";
     is ref $d, "TestExLib::DATA_ERROR";
+    is ref $c, "TestExLib::Custom";
     is $p->description,          "plain description";
     is $d->description,          "data description";
+    is $c->description,          "has custom constructor sugar";
     is $p->namespace,            "TestExLib";
+    is $d->namespace,            "TestExLib";
     is $d->namespace,            "TestExLib";
     is $p->error,                "PLAIN_ERROR";
     is $d->error,                "DATA_ERROR";
+    is $c->error,                "Custom";
     is $d->flub,                 'blarb';
     like $p->previous_exception, qr/wagh/;
     is_deeply $d->to_hash,
@@ -65,6 +74,14 @@ sub run {
         error              => 'PLAIN_ERROR',
         namespace          => 'TestExLib',
         previous_exception => "wagh\n",
+      };
+    is_deeply $c->to_hash,
+      {
+        data               => {},
+        description        => 'has custom constructor sugar',
+        error              => 'Custom',
+        namespace          => 'TestExLib',
+        previous_exception => "",
       };
     return;
 }

@@ -35,4 +35,16 @@ use Test::More;
     is $obj->more, undef;
 }
 
+{
+
+    package Test3;
+    use Test::More;
+
+    ok my $obj = make plus => "some", more => "data";
+    ok $obj->isa( Object );
+    is Object, "My::Moo::Object";
+    is $obj->plus, undef;
+    is $obj->more, undef;
+}
+
 done_testing;
