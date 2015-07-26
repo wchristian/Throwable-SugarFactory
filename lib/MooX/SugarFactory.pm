@@ -48,11 +48,11 @@ sub import {
     Constructor::SugarLibrary->import::into( 1 );
     my $factory = caller;
     *{ _getglob $factory, "class" } = sub {
-        my ( $call, @args ) = @_;
-        my ( $class ) = split /->/, $call;
+        my ( $spec, @args ) = @_;
+        my ( $class ) = split /->/, $spec;
         my $build = $factory->can( "BUILDARGS" ) || sub { shift; @_ };
         BuildClass $class, $build->( $class, @args );
-        $factory->sweeten_meth( $call );
+        $factory->sweeten_meth( $spec );
         return;
     };
 }

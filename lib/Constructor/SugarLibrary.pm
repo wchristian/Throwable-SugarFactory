@@ -48,11 +48,11 @@ sub import {
     base->import::into( 1, "Exporter" );
     my $library      = caller;
     my $sweeten_func = sub {
-        for my $call ( @_ ) {
-            my ( $class ) = split /->/, $call;
+        for my $spec ( @_ ) {
+            my ( $class ) = split /->/, $spec;
             my ( $id ) = ( reverse split /::/, $class )[0];
             my ( $ctors, $ids ) =
-              Constructor::Sugar->import::into( $library, $call );
+              Constructor::Sugar->import::into( $library, $spec );
             push @{ _getexport $library}, @{$ctors}, @{$ids};
             my $tags = _getexport_tags $library;
             push @{ $tags->{$id} }, @{$ctors}, @{$ids};

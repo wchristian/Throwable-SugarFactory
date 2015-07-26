@@ -40,12 +40,12 @@ sub _export {
 }
 
 sub import {
-    my ( undef, @args ) = @_;
+    my ( undef, @specs ) = @_;
     my $target = caller;
     my ( @constructors, @iders );
 
-    for my $call ( @args ) {
-        my ( $class, $method ) = split /->/, $call;
+    for my $spec ( @specs ) {
+        my ( $class, $method ) = split /->/, $spec;
         $method ||= "new";
         my $id = ( reverse split /::/, $class )[0];
         my $ct = decamelize $id;
