@@ -3,7 +3,7 @@ package Constructor::SugarLibrary;
 use strictures 2;
 use Import::Into;
 use Constructor::Sugar ();
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::_Utils qw'_array _getglob';
 
 # VERSION
 
@@ -19,6 +19,7 @@ use Throwable::SugarFactory::_Utils '_getglob';
     
     sweeten "My::Moo::Object";
     sweeten "My::Moose::Thing";
+    sweeten [ "My::Custom", "make" ];
 
 And now these do the same:
 
@@ -53,8 +54,9 @@ sub import {
     base->import::into( 1, "Exporter" );
     my $library      = caller;
     my $sweeten_func = sub {
-        for my $spec ( @_ ) {
-            my ( $class ) = split /->/, $spec;
+        for ( @_ ) {
+            my $spec = _array $_;
+            my ( $class ) = split /->/, $spec->[0];
             my ( $id ) = ( reverse split /::/, $class )[0];
             my ( $ctors, $ids ) =
               Constructor::Sugar->import::into( $library, $spec );

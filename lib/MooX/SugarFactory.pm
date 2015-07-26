@@ -4,7 +4,7 @@ use strictures 2;
 use Import::Into;
 use MooX::BuildClass;
 use Constructor::SugarLibrary ();
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::_Utils qw'_array _getglob';
 
 # VERSION
 
@@ -27,6 +27,8 @@ use Throwable::SugarFactory::_Utils '_getglob';
         has     => [ meta     => ( is => 'ro' ) ],
         extends => Object(),
     );
+    
+    class [ "My::Custom", "make" ];
 
     package My::Code;
     use My::SugarLib;
@@ -53,7 +55,8 @@ sub import {
     my $factory = caller;
     *{ _getglob $factory, "class" } = sub {
         my ( $spec, @args ) = @_;
-        my ( $class ) = split /->/, $spec;
+        $spec = _array $spec;
+        my ( $class ) = split /->/, $spec->[0];
         my $build = $factory->can( "BUILDARGS" ) || sub { shift; @_ };
         BuildClass $class, $build->( $class, @args );
         $factory->sweeten_meth( $spec );

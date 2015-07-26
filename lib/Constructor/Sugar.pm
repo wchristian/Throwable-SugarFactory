@@ -3,7 +3,7 @@ package Constructor::Sugar;
 use strictures 2;
 
 use String::CamelCase 'decamelize';
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::_Utils qw'_array _getglob';
 
 # VERSION
 
@@ -26,6 +26,7 @@ use Throwable::SugarFactory::_Utils '_getglob';
     {
         package ConstructorWrapper;
         use Constructor::Sugar 'My::Moo::Object';
+        use Constructor::Sugar [ 'My::Custom', "make" ];
         
         my $o = object plus => "some", more => "data";
         die if !$o->isa( Object );
@@ -46,16 +47,18 @@ sub _export {
 
 sub import {
     my ( undef, @specs ) = @_;
+    @specs = map { _array $_ } @specs;
     my $target = caller;
     my ( @constructors, @iders );
 
     for my $spec ( @specs ) {
-        my ( $class, $method ) = split /->/, $spec;
-        $method ||= "new";
+        my ( $call, $ct ) = @{$spec};
+        my ( $class, $ctmeth ) = split /->/, $call;
+        $ctmeth ||= "new";
         my $id = ( reverse split /::/, $class )[0];
-        my $ct = decamelize $id;
+        $ct ||= decamelize $id;
 
-        push @constructors, _export $target, $ct, sub { $class->$method( @_ ) };
+        push @constructors, _export $target, $ct, sub { $class->$ctmeth( @_ ) };
         push @iders,        _export $target, $id, sub { $class };
     }
 

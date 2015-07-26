@@ -16,6 +16,7 @@ BEGIN {
     exception PLAIN_ERROR => "plain description";
     exception DATA_ERROR  => "data description" =>
       ( has => [ flub => ( is => 'ro' ) ] );
+    exception [ Custom => "make" ] => "has custom constructor sugar";
 
     $INC{"TestExLib.pm"} = 1;
 }

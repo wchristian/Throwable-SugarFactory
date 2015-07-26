@@ -26,6 +26,7 @@ BEGIN {
     use Constructor::SugarLibrary;
     sweeten "My::Moo::Object";
     sweeten "My::Moo::Object2->cons";
+    sweeten [ "My::Custom", "make" ];
     ok exception { sweeten "My::Moose::Object" };
     $INC{"Sugar/Library.pm"}++;
 }

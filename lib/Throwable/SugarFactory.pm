@@ -3,7 +3,7 @@ package Throwable::SugarFactory;
 use strictures 2;
 use Import::Into;
 use MooX::SugarFactory ();
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::_Utils qw'_array _getglob';
 
 # VERSION
 
@@ -19,6 +19,7 @@ use Throwable::SugarFactory::_Utils '_getglob';
     exception PlainError => "a generic error without metadata";
     exception DataError  => "data description" =>
       has => [ flub => ( is => 'ro' ) ];
+    exception [ Custom => "make" ] => "has a custom constructor";
 
     package My::Code;
     use My::SugarLib;
@@ -62,11 +63,11 @@ sub import {
     MooX::SugarFactory->import::into( 1 );
     my $factory = caller;
     *{ _getglob $factory, "exception" } = sub {
-        my ( $id, $description, @args ) = @_;
-        my $class = "${factory}::$id";
-        $factory->can( "class" )->(
-            "$class->throw", _base_args( $factory, $id, $description ), @args
-        );
+        my ( $spec, $description, @args ) = @_;
+        $spec = _array $spec;
+        my @defaults = _base_args( $factory, $spec->[0], $description );
+        $spec->[0] = "${factory}::$spec->[0]->throw";
+        $factory->can( "class" )->( $spec, @defaults, @args );
     };
 }
 

@@ -39,6 +39,7 @@ use Test::More;
 
     package Test3;
     use Test::More;
+    use Constructor::Sugar [ "My::Moo::Object->cons", "make" ];
 
     ok my $obj = make plus => "some", more => "data";
     ok $obj->isa( Object );
