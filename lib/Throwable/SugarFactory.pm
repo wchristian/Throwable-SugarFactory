@@ -94,6 +94,10 @@ To declare an exception in your library, you call exception with 3 arguments:
   provide a lot of freedom and even give the ability to modify the syntax of the
   constructor arguments somewhat.
 
+Note: You CAN include C<::> in the spec, but the results may not be what you
+expect, and they may change in the future. As of now this is bat country.
+Consider yourself warned. Talk to me in #web-simple if you have ideas on this.
+
 =head1 IMPORTING EXCEPTIONS
 
 Your exception library will be a basic L<Exporter> package, which operated like
