@@ -4,6 +4,20 @@ use strictures 2;
 use Class::Inspector;
 use Moo::Role;
 
+# VERSION
+
+# ABSTRACT: role provides a generic to_hash function for Throwable exceptions
+
+# COPYRIGHT
+
+=head1 METHODS
+
+=head2 to_hash
+
+Returns a hash reference containing the data of the exception.
+
+=cut
+
 sub to_hash {
     my ( $self ) = @_;
     my @base_methods = qw( error namespace description previous_exception );

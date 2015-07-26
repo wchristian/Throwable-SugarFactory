@@ -64,6 +64,13 @@ extends  has  with  before  around  after  install
 The obvious ones are proxies for the corresponding Moo class setup functions,
 and install is used to set up methods.
 
+=head1 METHODS
+
+=head2 make_variant_package_name
+
+Advises Package::Variant to use the user-provided name to create the new class
+in. Dies if that class has already been defined.
+
 =cut
 
 sub make_variant_package_name {
@@ -74,6 +81,13 @@ sub make_variant_package_name {
 
     return $name;
 }
+
+=head2 make_variant
+
+Takes the arguments and executes them as function calls on the target package
+to declare the class.
+
+=cut
 
 sub make_variant {
     my ( $class, undef, undef, @args ) = @_;

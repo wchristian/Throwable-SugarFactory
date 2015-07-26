@@ -41,8 +41,13 @@ And now these do the same:
 
 =cut
 
-sub _getexport      { no strict; \@{"$_[0]::EXPORT"} }
-sub _getexport_tags { no strict; \%{"$_[0]::EXPORT_TAGS"} }
+{
+    ## no critic (ProhibitNoStrict)
+    no strict 'refs';
+    sub _getexport      { \@{"$_[0]::EXPORT"} }
+    sub _getexport_tags { \%{"$_[0]::EXPORT_TAGS"} }
+    ## use critic
+}
 
 sub import {
     base->import::into( 1, "Exporter" );
