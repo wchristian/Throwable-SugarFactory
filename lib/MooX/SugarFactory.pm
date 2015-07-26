@@ -4,6 +4,7 @@ use strictures 2;
 use Import::Into;
 use MooX::BuildClass;
 use Constructor::SugarLibrary ();
+use Throwable::SugarFactory::_Utils '_getglob';
 
 # VERSION
 
@@ -43,12 +44,10 @@ use Constructor::SugarLibrary ();
 
 =cut
 
-sub _getglob { no strict; \*{ $_[0] } }
-
 sub import {
     Constructor::SugarLibrary->import::into( 1 );
     my $factory = caller;
-    *{ _getglob "$factory\::class" } = sub {
+    *{ _getglob $factory, "class" } = sub {
         my ( $call, @args ) = @_;
         my ( $class ) = split /->/, $call;
         my $build = $factory->can( "BUILDARGS" ) || sub { shift; @_ };

@@ -3,6 +3,7 @@ package Throwable::SugarFactory;
 use strictures 2;
 use Import::Into;
 use MooX::SugarFactory ();
+use Throwable::SugarFactory::_Utils '_getglob';
 
 # VERSION
 
@@ -40,8 +41,6 @@ use MooX::SugarFactory ();
 
 =cut
 
-sub _getglob { no strict; \*{ $_[0] } }
-
 sub _base_args {
     my ( $namespace, $error, $description ) = @_;
     return (
@@ -55,9 +54,9 @@ sub _base_args {
 sub import {
     MooX::SugarFactory->import::into( 1 );
     my $factory = caller;
-    *{ _getglob "$factory\::exception" } = sub {
+    *{ _getglob $factory, "exception" } = sub {
         my ( $id, $description, @args ) = @_;
-        my $class = "$factory\::$id";
+        my $class = "${factory}::$id";
         $factory->can( "class" )->(
             "$class->throw", _base_args( $factory, $id, $description ), @args
         );

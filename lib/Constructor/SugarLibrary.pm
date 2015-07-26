@@ -3,6 +3,7 @@ package Constructor::SugarLibrary;
 use strictures 2;
 use Import::Into;
 use Constructor::Sugar ();
+use Throwable::SugarFactory::_Utils '_getglob';
 
 # VERSION
 
@@ -40,9 +41,8 @@ And now these do the same:
 
 =cut
 
-sub _getglob        { no strict; \*{ $_[0] } }
-sub _getexport      { no strict; \@{"$_[0]\::EXPORT"} }
-sub _getexport_tags { no strict; \%{"$_[0]\::EXPORT_TAGS"} }
+sub _getexport      { no strict; \@{"$_[0]::EXPORT"} }
+sub _getexport_tags { no strict; \%{"$_[0]::EXPORT_TAGS"} }
 
 sub import {
     base->import::into( 1, "Exporter" );
@@ -64,8 +64,8 @@ sub import {
         shift;
         $sweeten_func->( @_ );
     };
-    *{ _getglob "$library\::sweeten" }      = $sweeten_func;
-    *{ _getglob "$library\::sweeten_meth" } = $sweeten_meth;
+    *{ _getglob $library, "sweeten" }      = $sweeten_func;
+    *{ _getglob $library, "sweeten_meth" } = $sweeten_meth;
     return;
 }
 

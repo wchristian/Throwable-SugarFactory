@@ -3,6 +3,7 @@ package Constructor::Sugar;
 use strictures 2;
 
 use String::CamelCase 'decamelize';
+use Throwable::SugarFactory::_Utils '_getglob';
 
 # VERSION
 
@@ -32,11 +33,9 @@ use String::CamelCase 'decamelize';
 
 =cut
 
-sub _getglob { no strict; \*{ $_[0] } }
-
 sub _export {
     my ( $pkg, $func, $code ) = @_;
-    *{ _getglob "$pkg\::$func" } = $code;
+    *{ _getglob $pkg, $func } = $code;
     return $func;
 }
 
