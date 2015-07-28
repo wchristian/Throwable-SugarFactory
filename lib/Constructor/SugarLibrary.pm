@@ -3,7 +3,7 @@ package Constructor::SugarLibrary;
 use strictures 2;
 use Import::Into;
 use Constructor::Sugar ();
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::Utils '_getglob';
 
 # VERSION
 

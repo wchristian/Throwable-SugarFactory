@@ -3,7 +3,7 @@ package Throwable::SugarFactory;
 use strictures 2;
 use Import::Into;
 use MooX::SugarFactory ();
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::Utils '_getglob';
 
 # VERSION
 

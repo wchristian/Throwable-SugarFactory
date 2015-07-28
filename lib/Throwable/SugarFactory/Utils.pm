@@ -1,4 +1,4 @@
-package Throwable::SugarFactory::_Utils;
+package Throwable::SugarFactory::Utils;
 
 use strictures 2;
 use parent 'Exporter';
@@ -12,7 +12,7 @@ use parent 'Exporter';
 our @EXPORT_OK = qw( _getglob );
 
 ## no critic (ProhibitNoStrict)
-sub _getglob { no strict 'refs'; \*{join '::', @_} }
+sub _getglob { no strict 'refs'; \*{ join '::', @_ } }
 ## use critic
 
 1;

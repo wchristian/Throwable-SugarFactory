@@ -4,7 +4,7 @@ use strictures 2;
 use Import::Into;
 use MooX::BuildClass;
 use Constructor::SugarLibrary ();
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::Utils '_getglob';
 
 # VERSION
 

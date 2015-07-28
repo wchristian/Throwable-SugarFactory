@@ -3,7 +3,7 @@ package Constructor::Sugar;
 use strictures 2;
 
 use String::CamelCase 'decamelize';
-use Throwable::SugarFactory::_Utils '_getglob';
+use Throwable::SugarFactory::Utils '_getglob';
 
 # VERSION
 
