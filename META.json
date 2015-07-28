@@ -75,27 +75,31 @@
    "provides" : {
       "Constructor::Sugar" : {
          "file" : "lib/Constructor/Sugar.pm",
-         "version" : "0.152070"
+         "version" : "0.152090"
       },
       "Constructor::SugarLibrary" : {
          "file" : "lib/Constructor/SugarLibrary.pm",
-         "version" : "0.152070"
+         "version" : "0.152090"
       },
       "MooX::BuildClass" : {
          "file" : "lib/MooX/BuildClass.pm",
-         "version" : "0.152070"
+         "version" : "0.152090"
       },
       "MooX::SugarFactory" : {
          "file" : "lib/MooX/SugarFactory.pm",
-         "version" : "0.152070"
+         "version" : "0.152090"
       },
       "Throwable::SugarFactory" : {
          "file" : "lib/Throwable/SugarFactory.pm",
-         "version" : "0.152070"
+         "version" : "0.152090"
       },
       "Throwable::SugarFactory::Hashable" : {
          "file" : "lib/Throwable/SugarFactory/Hashable.pm",
-         "version" : "0.152070"
+         "version" : "0.152090"
+      },
+      "Throwable::SugarFactory::Utils" : {
+         "file" : "lib/Throwable/SugarFactory/Utils.pm",
+         "version" : "0.152090"
       }
    },
    "release_status" : "stable",
@@ -111,6 +115,6 @@
          "web" : "https://github.com/wchristian/Throwable-SugarFactory"
       }
    },
-   "version" : "0.152070"
+   "version" : "0.152090"
 }
 

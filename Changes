@@ -2,5 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.152090  2015-07-28 21:34:31+02:00 Europe/Berlin
+    - fix a bug for perls in development (thanks SREZIC)
+    - move ::_Utils to ::Util, avoids toolchain problems (thanks HAARG)
+
 0.152070  2015-07-27 00:11:52+02:00 Europe/Berlin
     - first release
