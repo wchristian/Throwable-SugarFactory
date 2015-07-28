@@ -4,7 +4,8 @@ use strictures 2;
 use Package::Variant 1.003002    #
   importing => ['Moo'],
   subs      => [qw(extends has with before around after)];
-use Module::Runtime 'module_notional_filename';
+
+use MooX::BuildClass::Utils qw( make_variant_package_name make_variant );
 
 # VERSION
 
@@ -64,39 +65,6 @@ extends  has  with  before  around  after  install
 The obvious ones are proxies for the corresponding Moo class setup functions,
 and install is used to set up methods.
 
-=head1 METHODS
-
-=head2 make_variant_package_name
-
-Advises Package::Variant to use the user-provided name to create the new class
-in. Dies if that class has already been defined.
-
 =cut
-
-sub make_variant_package_name {
-    my ( undef, $name ) = @_;
-
-    my $path = module_notional_filename $name;
-    die "Won't clobber already loaded: $path => $INC{$path}" if $INC{$path};
-
-    return $name;
-}
-
-=head2 make_variant
-
-Takes the arguments and executes them as function calls on the target package
-to declare the class.
-
-=cut
-
-sub make_variant {
-    my ( $class, undef, undef, @args ) = @_;
-    while ( @args ) {
-        my ( $func, $args ) = ( shift @args, shift @args );
-        $args = [$args] if ref $args ne "ARRAY";
-        __PACKAGE__->can( $func )->( @{$args} );
-    }
-    return;
-}
 
 1;

@@ -9,11 +9,11 @@ BEGIN {
         has => [ plus => ( is => 'ro' ) ],
         has => [ more => ( is => 'ro' ) ],
     );
-    class "My::Moo::Thing" => (
-        has     => [ contains => ( is => 'ro' ) ],
-        has     => [ meta     => ( is => 'ro' ) ],
-        extends => Object(),
+    role "My::Moo::ThingRole" => (
+        has => [ contains => ( is => 'ro' ) ],
+        has => [ mota     => ( is => 'ro' ) ],
     );
+    class "My::Moo::Thing" => ( with => ThingRole(), extends => Object() );
     class "My::Moo::CustomCons->cons" => (
         has     => [ contains => ( is => 'ro' ) ],
         has     => [ meta     => ( is => 'ro' ) ],
@@ -29,9 +29,10 @@ is $obj->plus, "some";
 is Object, "My::Moo::Object";
 
 ok my $obj2 =    #
-  thing contains => "other", meta => "data", plus => "some", more => "data";
+  thing contains => "other", mota => "data", plus => "some", more => "data";
 ok $obj2->isa( Thing );
 ok $obj2->isa( Object );
+ok $obj2->does( ThingRole );
 is $obj2->contains, "other";
 is $obj2->plus,     "some";
 is Thing, "My::Moo::Thing";
