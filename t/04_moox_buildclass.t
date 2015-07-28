@@ -6,7 +6,7 @@ use Test::Fatal;
 use MooX::BuildClass;
 
 { package TestRole; use Moo::Role }
-{ package TestClass; use Moo; $INC{"TestClass.pm"}++ }
+{ package TestClass; use Moo }
 
 BuildClass Thing => install => [ foo => sub { "foo" } ];
 is Thing->new->foo, "foo";
