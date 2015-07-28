@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.152091  2015-07-29 00:08:49+02:00 Europe/Berlin
+    - add MooX::BuildRole as a sister to MooX::BuildClass
+
 0.152090  2015-07-28 21:34:31+02:00 Europe/Berlin
     - fix a bug for perls in development (thanks SREZIC)
     - move ::_Utils to ::Util, avoids toolchain problems (thanks HAARG)
