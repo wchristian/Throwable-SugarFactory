@@ -25,6 +25,7 @@ my %WriteMakefileArgs = (
     "Moo::Role" => 0,
     "Package::Variant" => "1.003002",
     "String::CamelCase" => 0,
+    "Throwable" => 0,
     "parent" => 0,
     "strict" => 0,
     "strictures" => 2
@@ -41,7 +42,7 @@ my %WriteMakefileArgs = (
     "Try::Tiny" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.152091",
+  "VERSION" => "0.152660",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -65,6 +66,7 @@ my %FallbackPrereqs = (
   "Test::Fatal" => 0,
   "Test::InDistDir" => 0,
   "Test::More" => 0,
+  "Throwable" => 0,
   "Try::Tiny" => 0,
   "parent" => 0,
   "strict" => 0,

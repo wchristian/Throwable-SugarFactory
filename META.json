@@ -50,6 +50,7 @@
             "Moo::Role" : "0",
             "Package::Variant" : "1.003002",
             "String::CamelCase" : "0",
+            "Throwable" : "0",
             "parent" : "0",
             "perl" : "5.006",
             "strict" : "0",
@@ -75,39 +76,39 @@
    "provides" : {
       "Constructor::Sugar" : {
          "file" : "lib/Constructor/Sugar.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "Constructor::SugarLibrary" : {
          "file" : "lib/Constructor/SugarLibrary.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "MooX::BuildClass" : {
          "file" : "lib/MooX/BuildClass.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "MooX::BuildClass::Utils" : {
          "file" : "lib/MooX/BuildClass/Utils.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "MooX::BuildRole" : {
          "file" : "lib/MooX/BuildRole.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "MooX::SugarFactory" : {
          "file" : "lib/MooX/SugarFactory.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "Throwable::SugarFactory" : {
          "file" : "lib/Throwable/SugarFactory.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "Throwable::SugarFactory::Hashable" : {
          "file" : "lib/Throwable/SugarFactory/Hashable.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       },
       "Throwable::SugarFactory::Utils" : {
          "file" : "lib/Throwable/SugarFactory/Utils.pm",
-         "version" : "0.152091"
+         "version" : "0.152660"
       }
    },
    "release_status" : "stable",
@@ -123,6 +124,6 @@
          "web" : "https://github.com/wchristian/Throwable-SugarFactory"
       }
    },
-   "version" : "0.152091"
+   "version" : "0.152660"
 }
 

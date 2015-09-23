@@ -5,6 +5,7 @@ requires "Module::Runtime" => "0";
 requires "Moo::Role" => "0";
 requires "Package::Variant" => "1.003002";
 requires "String::CamelCase" => "0";
+requires "Throwable" => "0";
 requires "parent" => "0";
 requires "perl" => "5.006";
 requires "strict" => "0";
