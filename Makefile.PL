@@ -39,10 +39,11 @@ my %WriteMakefileArgs = (
     "Test::Fatal" => 0,
     "Test::InDistDir" => 0,
     "Test::More" => 0,
+    "Throwable::Error" => 0,
     "Try::Tiny" => 0,
     "warnings" => 0
   },
-  "VERSION" => "0.152660",
+  "VERSION" => "0.152670",
   "test" => {
     "TESTS" => "t/*.t"
   }
@@ -67,6 +68,7 @@ my %FallbackPrereqs = (
   "Test::InDistDir" => 0,
   "Test::More" => 0,
   "Throwable" => 0,
+  "Throwable::Error" => 0,
   "Try::Tiny" => 0,
   "parent" => 0,
   "strict" => 0,

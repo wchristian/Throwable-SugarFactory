@@ -20,6 +20,7 @@ on 'test' => sub {
   requires "Test::Fatal" => "0";
   requires "Test::InDistDir" => "0";
   requires "Test::More" => "0";
+  requires "Throwable::Error" => "0";
   requires "Try::Tiny" => "0";
   requires "perl" => "5.006";
   requires "warnings" => "0";
