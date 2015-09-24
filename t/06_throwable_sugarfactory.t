@@ -6,6 +6,7 @@ use Test::InDistDir;
 use Test::More;
 use Test::Fatal;
 use Try::Tiny;
+use Throwable::Error;
 
 BEGIN {
 
@@ -66,6 +67,11 @@ sub run {
     is $n->error,                "Nested::ERROR";
     is $d->flub,                 'blarb';
     like $p->previous_exception, qr/wagh/;
+
+    # different Throwable versions have different prev defaults, thus detect
+    my $pe = try { Throwable::Error->throw( { message => "" } ) }    #
+    catch { $_->previous_exception };
+
     is_deeply $d->to_hash,
       ex_hash { @d }, 'data description', 'DATA_ERROR', 'TestExLib', "";
     is_deeply $p->to_hash,
