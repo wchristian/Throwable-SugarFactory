@@ -1,6 +1,7 @@
 package MooX::BuildClass;
 
 use strictures 2;
+use Moo 1.004000 ();    # required to get %INC-marking
 use Package::Variant 1.003002    #
   importing => ['Moo'],
   subs      => [qw(extends has with before around after)];

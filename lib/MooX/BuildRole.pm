@@ -1,7 +1,8 @@
 package MooX::BuildRole;
 
 use strictures 2;
-use Package::Variant 1.003002    #
+use Moo::Role 1.004000 ();    # required to get %INC-marking
+use Package::Variant 1.003002 #
   importing => ['Moo::Role'],
   subs      => [qw(extends has with before around after requires)];
 
