@@ -47,7 +47,8 @@
             "Exporter" : "0",
             "Import::Into" : "0",
             "Module::Runtime" : "0",
-            "Moo::Role" : "0",
+            "Moo" : "1.004000",
+            "Moo::Role" : "1.004000",
             "Package::Variant" : "1.003002",
             "String::CamelCase" : "0",
             "Throwable" : "0",
@@ -63,7 +64,6 @@
             "File::Temp" : "0",
             "IO::Handle" : "0",
             "IPC::Open3" : "0",
-            "Moo" : "0",
             "Test::Fatal" : "0",
             "Test::InDistDir" : "0",
             "Test::More" : "0",
@@ -77,39 +77,39 @@
    "provides" : {
       "Constructor::Sugar" : {
          "file" : "lib/Constructor/Sugar.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "Constructor::SugarLibrary" : {
          "file" : "lib/Constructor/SugarLibrary.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "MooX::BuildClass" : {
          "file" : "lib/MooX/BuildClass.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "MooX::BuildClass::Utils" : {
          "file" : "lib/MooX/BuildClass/Utils.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "MooX::BuildRole" : {
          "file" : "lib/MooX/BuildRole.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "MooX::SugarFactory" : {
          "file" : "lib/MooX/SugarFactory.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "Throwable::SugarFactory" : {
          "file" : "lib/Throwable/SugarFactory.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "Throwable::SugarFactory::Hashable" : {
          "file" : "lib/Throwable/SugarFactory/Hashable.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       },
       "Throwable::SugarFactory::Utils" : {
          "file" : "lib/Throwable/SugarFactory/Utils.pm",
-         "version" : "0.152680"
+         "version" : "0.152681"
       }
    },
    "release_status" : "stable",
@@ -125,6 +125,6 @@
          "web" : "https://github.com/wchristian/Throwable-SugarFactory"
       }
    },
-   "version" : "0.152680"
+   "version" : "0.152681"
 }
 
