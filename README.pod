@@ -6,7 +6,7 @@ Throwable::SugarFactory - build a library of syntax-sugared Throwable-based exce
 
 =head1 VERSION
 
-version 0.152681
+version 0.152690
 
 =head1 SYNOPSIS
 
