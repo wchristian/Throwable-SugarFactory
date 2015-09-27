@@ -53,7 +53,7 @@ Use class library to export sugar for object construction and class checking.
 
 sub import {
     my ( $class ) = @_;
-    Constructor::SugarLibrary->import::into( 1 );
+    Constructor::SugarLibrary->import::into( scalar caller );    # I::I 1.001000
     my $factory = caller;
     *{ _getglob $factory, $_ } = $class->_creator_with( $factory, $_ )
       for qw( class role );

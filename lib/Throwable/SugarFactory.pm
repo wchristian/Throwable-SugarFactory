@@ -166,7 +166,7 @@ sub _base_args {
 }
 
 sub import {
-    MooX::SugarFactory->import::into( 1 );
+    MooX::SugarFactory->import::into( scalar caller );    # I::I 1.001000 syntax
     my $factory = caller;
     *{ _getglob $factory, "exception" } = sub {
         my ( $id, $description, @args ) = @_;

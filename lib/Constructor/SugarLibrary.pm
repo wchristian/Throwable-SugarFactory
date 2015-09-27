@@ -53,7 +53,7 @@ Using the sugar library the same can be done much more concisely:
 }
 
 sub import {
-    base->import::into( 1, "Exporter" );
+    base->import::into( scalar caller, "Exporter" );    # I::I 1.001000 syntax
     my $library      = caller;
     my $sweeten_func = sub {
         for my $spec ( @_ ) {
