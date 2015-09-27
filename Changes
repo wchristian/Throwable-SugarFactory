@@ -2,6 +2,9 @@ Revision history for {{$dist->name}}
 
 {{$NEXT}}
 
+0.152700  2015-09-27 13:17:02+02:00 Europe/Berlin
+    - make compatible with Import::Into 1.001000 by using older syntax
+
 0.152681  2015-09-25 19:10:10+02:00 Europe/Berlin
     - require Moo(::Role) 1.004000 to get %INC-marking
 
