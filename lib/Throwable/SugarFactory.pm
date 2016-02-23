@@ -161,7 +161,7 @@ sub _base_args {
         with => [ "Throwable", __PACKAGE__ . "::Hashable" ],
         has => [ namespace   => ( is => 'ro', default => $namespace ) ],
         has => [ error       => ( is => 'ro', default => $error ) ],
-        has => [ description => ( is => 'ro', default => $description ) ],
+        has => [ description => ( is => 'ro', lazy => 1, default => $description ) ],
     );
 }
 
