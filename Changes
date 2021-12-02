@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.213360  2021-12-02 17:22:15+01:00 Europe/Berlin
     - skip non-attribute method new_with_previous on converting Throwable to
       hash
 
