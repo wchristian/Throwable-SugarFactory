@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - skip non-attribute method new_with_previous on converting Throwable to
+      hash
 
 0.152700  2015-09-27 13:17:02+02:00 Europe/Berlin
     - make compatible with Import::Into 1.001000 by using older syntax
